@@ -1,0 +1,4 @@
+pandas==1.2.3
+streamlit==0.81.1
+pyarrow==5.0.0
+requests==2.25.1
