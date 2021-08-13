@@ -18,7 +18,7 @@ def load_csv ():
     mem_fh = io.BytesIO(resp.raw.read())
     df_origin = pq.read_table(mem_fh).to_pandas()
     df_origin['pick_up_hour'] = pd.to_datetime(df_origin['route_pickup_checkout_time']).dt.hour.astype('Int64')
-    return df_origin
+    return df_origin.head(1000)
 
 df_2 = load_csv()
 
