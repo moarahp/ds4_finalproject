@@ -11,14 +11,14 @@ st.subheader("Live app of data referring to the final project of the Group 18 Da
 @st.cache
 def load_csv ():
     resp = requests.get(
-        "https://ds4a-moarah-data.s3.us-east-2.amazonaws.com/first_delivey_attempts_anon_faker_03.parquet",
+        "https://ds4a-moarah-data.s3.us-east-2.amazonaws.com/ds4a_v1.parquet",
         stream=True
     )
     resp.raw.decode_content = True
     mem_fh = io.BytesIO(resp.raw.read())
     df_origin = pq.read_table(mem_fh).to_pandas()
     df_origin['pick_up_hour'] = pd.to_datetime(df_origin['route_pickup_checkout_time']).dt.hour.astype('Int64')
-    return df_origin.head(1000)
+    return df_origin
 
 df_2 = load_csv()
 
